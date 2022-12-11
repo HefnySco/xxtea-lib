@@ -1,3 +1,10 @@
+# DISCLAIMER
+
+This code is original owned by https://github.com/per1234/xxtea-lib 
+I only added a single change that makes it compatible with [xxtea-npm](https://www.npmjs.com/package/xxtea-node "xxtea-npm") and [xxtea-python](https://github.com/xxtea/xxtea-python "xxtea-python")
+
+
+
 # xxtea Cryptography library for Arduino #
 
 ![Build Status](https://travis-ci.org/boseji/xxtea-lib.svg?branch=master)
