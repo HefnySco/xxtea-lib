@@ -88,7 +88,7 @@ int xxtea_encrypt(uint8_t *data, size_t len, uint8_t *buf, size_t *maxlen)
       break;
     }
     // Calculate the Length needed for the 32bit Buffer
-    l = UINT32CALCBYTE(len);
+    l = UINT32CALCBYTE(len)+1;
 
     // Check if More than expected space is needed
     if(l > MAX_XXTEA_DATA32 || *maxlen < (l * 4))
@@ -102,15 +102,18 @@ int xxtea_encrypt(uint8_t *data, size_t len, uint8_t *buf, size_t *maxlen)
 
     // Copy the Data from Buffer
     memcpy((void *)xxtea_data, (const void *)data, len);
+    // add the length of data as extra input to be used in encryption.
+    // this what max it compatible with python & nodejs libs.
+    xxtea_data[l-1] = (byte) len;
 
     // Perform Encryption - Change for Unsigned Handling while using memory Pointer (18th July 2017)
     dtea_fn1(xxtea_data, l, (const uint32_t *)xxtea_key);
 
     // Copy Encrypted Data back to buffer
-    memcpy((void *)buf, (const void *)xxtea_data, (l*4));
+    memcpy((void *)buf, (const void *)xxtea_data, ((l)*4));
 
     // Assign the Length
-    *maxlen = l*4;
+    *maxlen = (l)*4;
 
     ret = XXTEA_STATUS_SUCCESS;
   }while(0);

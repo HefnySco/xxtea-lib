@@ -32,8 +32,8 @@
 #define _XXTEA_LIB_H_
 
 #include <stdint.h>
-
 #include <Arduino.h>
+
 
 #ifndef MAX_XXTEA_DATA8
 // Maximum Size of Data Buffer in Bytes
