@@ -1,0 +1,18 @@
+language: c++
+sudo: false
+before_install:
+  - source <(curl -SLs https://github.com/boseji/Travis-CI-arduino/raw/master/install.sh)
+  - export ARDUINO_IDE_VERSION="1.8.9"
+script:
+  #- build_main_platforms
+  - build_platform uno
+  - build_platform due
+  - build_platform zero
+  - build_platform esp8266
+  - build_platform esp32
+  - build_platform leonardo
+  - build_platform mega2560
+notifications:
+  email:
+    on_success: change
+    on_failure: change
